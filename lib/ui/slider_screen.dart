@@ -14,7 +14,6 @@ class SliderScreen extends StatefulWidget {
 class _SliderScreenState extends State<SliderScreen> {
   @override
   Widget build(BuildContext context) {
-    print('build');
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -24,7 +23,23 @@ class _SliderScreenState extends State<SliderScreen> {
         mainAxisAlignment: .center,
         crossAxisAlignment: .center,
         children: [
+          Row(
+            mainAxisAlignment: .spaceBetween,
+            children: [
+              Text('Notification'),
+              BlocBuilder<SwitchBloc, SwitchState>(
+                buildWhen:(previous, current) => previous.isOff != current.isOff,
+                builder: (context, state) {
+                  return Switch(value: state.isOff, onChanged: (value) {
+                    context.read<SwitchBloc>().add(OnOrOffNotification(isOff: state.isOff));
+                  });
+                },
+              )
+            ],
+          ),
+          SizedBox(height: 30),
           BlocBuilder<SwitchBloc, SwitchState>(
+              buildWhen:(previous, current) => previous.slider != current.slider,
               builder: (context, state) {
                 return Container(
                   height: 200,
@@ -35,6 +50,7 @@ class _SliderScreenState extends State<SliderScreen> {
                 );
               }),
           BlocBuilder<SwitchBloc, SwitchState>(
+            buildWhen:(previous, current) => previous.slider != current.slider,
             builder: (context, state) {
               return Slider(value: state.slider, onChanged: (value) {
                 context.read<SwitchBloc>().add(SliderEvent(slider: value));

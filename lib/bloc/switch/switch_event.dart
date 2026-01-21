@@ -3,7 +3,8 @@
 import 'package:equatable/equatable.dart';
 
 abstract class SwitchEvent extends Equatable{
-    SwitchEvent();
+
+const SwitchEvent();
 
 }
 
@@ -15,4 +16,13 @@ class SliderEvent extends SwitchEvent{
 
   @override
   List<Object> get props => [slider,];
+}
+
+class OnOrOffNotification extends SwitchEvent {
+ bool isOff = true;
+  OnOrOffNotification({required this.isOff});
+
+  @override
+  List<Object> get props => [isOff];
+
 }

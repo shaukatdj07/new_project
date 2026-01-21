@@ -8,9 +8,14 @@ class SwitchBloc extends Bloc<SwitchEvent, SwitchState> {
 
   SwitchBloc():super(SwitchState()){
     on<SliderEvent>(_slider);
+    on<OnOrOffNotification>(_onOrOffNotification);
   }
 
   void _slider(SliderEvent events, Emitter<SwitchState> emit){
-    emit(state.copyWith(slider:  events.slider));
+    emit(state.copyWith(slider:  events.slider,));
+  }
+
+  void _onOrOffNotification(OnOrOffNotification events, Emitter<SwitchState> emit){
+    emit(state.copyWith(isOff: !state.isOff));
   }
 }
