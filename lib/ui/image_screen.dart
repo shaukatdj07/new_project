@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:bloc_app/bloc/image_picker/image_picker_bloc.dart';
 import 'package:bloc_app/bloc/image_picker/image_picker_event.dart';
 import 'package:bloc_app/bloc/image_picker/image_picker_state.dart';

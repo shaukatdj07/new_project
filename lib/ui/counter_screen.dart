@@ -24,13 +24,13 @@ class _CounterScreenState extends State<CounterScreen> {
           BlocBuilder<CounterBloc, CounterState>(
             builder: (context, event) {
               return Text(
-                event.counter.toString(),
+                event.count.toString(),
                 style: TextStyle(
                   fontSize: 30,
                   fontWeight: FontWeight.bold,
-                  color: event.counter < 0
+                  color: event.count < 0
                       ? Colors.red
-                      : event.counter == 0
+                      : event.count == 0
                       ? Colors.blueGrey
                       : Colors.green,
                 ),
@@ -44,7 +44,7 @@ class _CounterScreenState extends State<CounterScreen> {
             children: [
               ElevatedButton(
                 onPressed: () {
-                  context.read<CounterBloc>().add(IncrementCounter());
+                  context.read<CounterBloc>().add(IncrementEvent());
                 },
                 child: Icon(Icons.add),
               ),
