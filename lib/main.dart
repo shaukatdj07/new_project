@@ -25,8 +25,11 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        themeMode: ThemeMode.dark,
         theme: ThemeData(
-            colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
+          brightness: Brightness.dark,
+          useMaterial3: true
+        ),
         home: const TodoScreen(),
       ),
     );
